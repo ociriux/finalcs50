@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html>
+    <body>
+        <h1>Food</h1>
+        <p>A list of some food</p>
+        <ul>
+            {% for x in foodItems %}
+                <li>{{ x.foodName }} {{ x.foodCategory }}</li>
+            {% endfor %}
+        </ul>
+    </body>
+</html>
