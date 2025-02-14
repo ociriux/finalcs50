@@ -6,3 +6,6 @@ class Food(models.Model):
     fatContent = models.IntegerField(null=True)
     sugarContent = models.IntegerField(null=True)
     proteinContent = models.IntegerField(null=True)
+
+    def __str__(self):
+        return f"{self.foodName}"

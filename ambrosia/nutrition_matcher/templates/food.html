@@ -1,12 +1,17 @@
-<!DOCTYPE html>
-<html>
-    <body>
-        <h1>Food</h1>
-        <p>A list of some food</p>
-        <ul>
-            {% for x in foodItems %}
-                <li>{{ x.foodName }} {{ x.foodCategory }}</li>
-            {% endfor %}
-        </ul>
-    </body>
-</html>
+{% extends "master.html" %}
+
+{% block title %}
+    Food
+{% endblock %}
+
+{% block main %}
+    <p>A list of some food</p>
+    <ul>
+        {% for x in food %}
+            <li><a href="details/{{ x.id }}">{{ x.foodName }} - {{ x.foodCategory }}</a></li>
+        {% endfor %}
+    </ul>
+    <div>
+        <a href="/">Index</a>
+    </div>
+{% endblock %}

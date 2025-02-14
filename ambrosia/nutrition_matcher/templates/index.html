@@ -1,7 +1,12 @@
-<!DOCTYPE html>
-<html>
-    <body>
-        <h1>Hello World!</h1>
-        <p>Welcome to my first Django Project - Ambrosia!</p>
-    </body>
-</html>
+{% extends "master.html" %}
+
+{% block title %}
+    Hello World!
+{% endblock %}
+
+{% block main %}
+    {% with greeting="Hello" %}
+    <h1>{{ greeting }} {% endwith %} {{ user }}, how are you?</h1>
+    <p>Welcome to my first Django Project - Ambrosia!</p>
+    <a href="/food">Food</a>
+{% endblock %}
