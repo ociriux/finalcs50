@@ -10,6 +10,11 @@
         {% for x in food %}
             <li><a href="details/{{ x.id }}">{{ x.foodName }} - {{ x.foodCategory }}</a></li>
         {% endfor %}
+        {% if 'i' in x.foodName %}
+        <p>
+            IIIIIIIIIIIIII
+        </p>
+        {% endif %}
     </ul>
     <div>
         <a href="/">Index</a>
