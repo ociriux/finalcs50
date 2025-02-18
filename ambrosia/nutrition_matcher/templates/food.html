@@ -5,18 +5,18 @@
 {% endblock %}
 
 {% block main %}
-    <p>A list of some food</p>
-    <ul>
-        {% for x in food %}
-            <li 
-                {% if 'i' in x.foodName %} 
-                    style='background-color: lightblue;'
-                {% endif %}>
-                <a href="details/{{ x.id }}">{{ x.foodName }} - {{ x.foodCategory }}</a>
-            </li>
-        {% endfor %}
-    </ul>
-    <div>
-        <a href="/">Index</a>
+    <div class="mycard">
+        <h1>Food</h1>
+        <p>A list of some food</p>
+        <ul>
+            {% for x in food %}
+                <li onclick="window.location = 'details/{{ x.id }}'"
+                    {% if 'i' in x.foodName %} 
+                        style='background-color: lightblue;'
+                    {% endif %}>
+                    {{ x.foodName }} - {{ x.foodCategory }}
+                </li>
+            {% endfor %}
+        </ul>
     </div>
 {% endblock %}

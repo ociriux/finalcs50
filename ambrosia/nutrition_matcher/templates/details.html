@@ -1,18 +1,17 @@
 {% extends "master.html" %}
 
 {% block title %}
-    {{ food.foodName }}
+    Details about {{ food.foodName }}
 {% endblock %}
 
 {% block main %}
-    <h3>Category: {{ food.foodCategory }}</h3>
-    <p>
-        Macros / 100g<br>
-        Fat: {{ food.fatContent }} g<br>
-        Sugar: {{ food.sugarContent }} g<br>
-        Protein: {{ food.proteinContent }} g
-    </p>
-    <div>
-        <a href="/food">Back</a>
+    <div class="mycard">
+        <h1>{{ food.foodName }}</h1>
+        <p>Macros / 100g</p>
+        <p>
+            Fat: {{ food.fatContent }} g<br>
+            Sugar: {{ food.sugarContent }} g<br>
+            Protein: {{ food.proteinContent }} g
+        </p>
     </div>
 {% endblock %}
