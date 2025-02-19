@@ -28,19 +28,28 @@ def details(request, id):
     return HttpResponse(template.render(context, request))
 
 
-def usda(request):
-    api_key = 'gdeU5YEXk67OSPqgivqM1SU4ltoiozPa5tsADXfJ'
-    query = request.GET.get('query', 'apple')  # Standardabfrage 'apple', falls keine Abfrage gestellt wird
-    url = 'https://api.nal.usda.gov/fdc/v1/foods/search'
+
+##########################
+def get_food_data(query):
+    url = "https://api.nal.usda.gov/fdc/v1/foods/search"
     params = {
-        'api_key': api_key,
-        'query': query,
-        'pageSize': 10  # Anzahl der zurückgegebenen Ergebnisse
+        "api_key": "gdeU5YEXk67OSPqgivqM1SU4ltoiozPa5tsADXfJ",
+        "query": query,
+        "pageSize": 25
     }
     response = requests.get(url, params=params)
     if response.status_code == 200:
-        data = response.json()
-        foods = data.get('foods', [])
+        return response.json()
     else:
-        foods = []
-    return render(request, 'usda.html', {'foods': foods, 'query': query})
+        # Fehlerbehandlung je nach Bedarf
+        return None
+####################################
+
+def usda(request):
+    template = loader.get_template('usda.html')
+    query = request.GET.get("query", "protein")  # Beispiel: Default-Suche "ketogen"
+    data = get_food_data(query)
+    context = {
+        'data' : data,
+    }
+    return render(request, "usda.html", context)
