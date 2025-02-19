@@ -131,4 +131,6 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-USDA_API_KEY = 'gdeU5YEXk67OSPqgivqM1SU4ltoiozPa5tsADXfJ'
+
+# Check for new dataset at https://fdc.nal.usda.gov/download-datasets and insert the latest Foundation Foods download link to update the database
+FOUNDATION_FOODS_DOWNLOAD_URL = 'https://fdc.nal.usda.gov/fdc-datasets/FoodData_Central_foundation_food_json_2024-10-31.zip'

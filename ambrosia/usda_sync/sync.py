@@ -1,4 +1,5 @@
 import requests
+from django.conf import settings
 
 def food_data_sync():
     """
@@ -11,7 +12,7 @@ def food_data_sync():
 
     # Beispiel: URL, von der die USDA-Daten heruntergeladen werden.
     # Ersetze dies mit der korrekten URL.
-    url = "https://example.com/usda-data.json"
+    url = settings.FOUNDATION_FOODS_DOWNLOAD_URL
     
     try:
         response = requests.get(url)
@@ -27,6 +28,3 @@ def food_data_sync():
     
     print("Daten wurden erfolgreich heruntergeladen und werden verarbeitet...")
     # Weiterverarbeitung der Daten ...
-https://fdc.nal.usda.gov/fdc-datasets/FoodData_Central_foundation_food_json_2024-10-31.zip
-https://fdc.nal.usda.gov/fdc-datasets/FoodData_Central_foundation_food_json_2024-04-18.zip
-https://fdc.nal.usda.gov/fdc-datasets/FoodData_Central_foundation_food_json_2023-10-26.zip
