@@ -20,10 +20,10 @@ class Nutrient(models.Model):
         def __str__(self):
                 return self.description
         
-class FoodNutrient(models.Model):
+class FoodSpecs(models.Model):
     food = models.ForeignKey(Food, on_delete=models.CASCADE)
     nutrient = models.ForeignKey(Nutrient, on_delete=models.CASCADE)
-    amount = models.FloatField()
+    amount = models.FloatField(null=True)
 
     class Meta:
         unique_together = ('food', 'nutrient')
