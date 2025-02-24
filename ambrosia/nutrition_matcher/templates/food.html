@@ -11,10 +11,10 @@
         <ul>
             {% for x in food %}
                 <li onclick="window.location = 'details/{{ x.id }}'"
-                    {% if 'i' in x.foodName %} 
+                    {% if 'i' in x.description %} 
                         style='background-color: lightblue;'
                     {% endif %}>
-                    {{ x.foodName }} - {{ x.foodCategory }}
+                    {{ x.description }} - {{ x.category }}
                 </li>
             {% endfor %}
         </ul>

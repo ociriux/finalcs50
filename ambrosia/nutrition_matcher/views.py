@@ -12,7 +12,7 @@ def index(request):
     return HttpResponse(template.render(context, request))
 
 def food(request):
-    foodItems = Food.objects.all().order_by('foodName')
+    foodItems = Food.objects.all().order_by('description')
     template = loader.get_template('food.html')
     context = {
         'food' : foodItems,
