@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.template import loader
-from usda_sync.models import Food, Nutrient, FoodSpecs
+from usda_sync.models import Food, Nutrient, FoodSpec
 import requests
 
 def index(request):

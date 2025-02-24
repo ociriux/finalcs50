@@ -1,6 +1,5 @@
 from django.apps import AppConfig
 from django.conf import settings
-from . import sync
 import os
 import sys
 import threading
@@ -11,10 +10,8 @@ class UsdaSyncConfig(AppConfig):
     name = 'usda_sync'
 
     def ready(self):
-        # Optional: Nur im Entwicklungsmodus oder bei runserver starten
+        from . import sync                                                      # Import the sync module after the app is ready
         if 'runserver' not in sys.argv or not os.environ.get('RUN_MAIN'):
             return
-
-        print("###########CUM###############")
 
         threading.Thread(target=sync.food_data_sync).start()
