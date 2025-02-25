@@ -12,17 +12,18 @@ def index(request):
     return HttpResponse(template.render(context, request))
 
 def food(request):
-    foodItems = Food.objects.all().order_by('description')
+    food = Food.objects.all().order_by('id')
     template = loader.get_template('food.html')
     context = {
-        'food' : foodItems,
+        'food' : food,
     }
     return HttpResponse(template.render(context, request))
 
 def details(request, id):
-    foodItem = Food.objects.get(id=id)
+    food = Food.objects.get(id=id)
+    food_specs = FoodSpec.objects.filter(food_id=id).order_by('nutrient')
     template = loader.get_template('details.html')
     context = {
-        'food' : foodItem,
+        'food_specs' : food_specs, 'food' : food,
     }
     return HttpResponse(template.render(context, request))

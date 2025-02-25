@@ -1,17 +1,14 @@
 {% extends "master.html" %}
 
 {% block title %}
-    Details about {{ food.foodName }}
+    Details about {{ food.description }}
 {% endblock %}
-
 {% block main %}
     <div class="mycard">
-        <h1>{{ food.foodName }}</h1>
+        <h1>{{ food.description }}</h1>
         <p>Macros / 100g</p>
-        <p>
-            Fat: {{ food.fatContent }} g<br>
-            Sugar: {{ food.sugarContent }} g<br>
-            Protein: {{ food.proteinContent }} g
-        </p>
+        {% for x in food_specs %}
+            <p>[{{ x.nutrient.id }}] {{ x.nutrient }}: {{ x.amount }}{{ x.nutrient.unit }}</p>
+        {% endfor %}
     </div>
 {% endblock %}
