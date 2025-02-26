@@ -1,6 +1,6 @@
 {% load static %}
 <!DOCTYPE html>
-<html lang="en" data-bs-theme="">
+<html lang="en" data-bs-theme="light">
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="initial-scale=1, width=device-width">
@@ -12,9 +12,9 @@
         <link rel="stylesheet" href="{% static 'styles.css' %}">
         <title>{% block title %}{% endblock %}</title>
     </head>
-    <body>
+    <body class="d-flex flex-column min-vh-100">
         <header>
-            <nav class="navbar navbar-expand-sm bg-light fixed-top">
+            <nav class="navbar navbar-expand-md bg-blurred fixed-top">
                 <div class="container">
                     <a class="navbar-brand" href="/">//AMBROSIA\\</a>
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar">
@@ -26,7 +26,16 @@
                                 <a class="nav-link" href="/food">Food</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="/usda">Nutrients</a>
+                                <a class="nav-link" href="/nutrients">Nutrients</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/health">Health</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/">Link</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/">Link</a>
                             </li>
                         </ul>
                         <form class="d-flex">
@@ -37,13 +46,21 @@
                 </div>
             </nav>
         </header>
-        <main class="container" style="margin-top:80px">
+        <main class="container flex-grow-1" style="margin-top:80px">
         {% block main %}
         {% endblock %}
         </main>
-        <footer class="footer">
+        <footer class="footer mt-auto py-3 bg-light">
             <div class="container">
-                <span class="text-muted">© 2021 Ambrosia</span>
+                <p class="text-muted">This is my final project for the CS50's Introduction to Computer Science Course.</p
+                <span class="text-muted">© 2025 Ambrosia</span>
+                <div class="text-muted">
+                    <ul class="list-inline">
+                        <li class="list-inline-item"><a href="#">Home</a></li>
+                        <li class="list-inline-item"><a href="#">Food</a></li>
+                        <li class="list-inline-item"><a href="#">Nutrients</a></li>
+                    </ul>
+                </div>
             </div>
         </footer>
     </body>

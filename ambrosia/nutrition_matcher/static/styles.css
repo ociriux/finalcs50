@@ -1,0 +1,5 @@
+.bg-blurred {
+    background: transparent;
+    backdrop-filter: blur(30px);
+    -webkit-backdrop-filter: blur(40px);
+}
