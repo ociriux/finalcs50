@@ -1,14 +1,25 @@
 {% extends "master.html" %}
 
 {% block title %}
-    Hello World!
+    Ambrosia - Optimizing your nutrition
 {% endblock %}
 
 {% block main %}
     <div class="main">
-        {% with greeting="Hello" %}
-        <h1>{{ greeting }} {% endwith %} {{ user }}, how are you?</h1>
-        <h3>Welcome to my first Django Project - Ambrosia!</h3>
-        <p>Get a lil preview of my <a href="food/">Food</a></p>
+        <h1>Welcome to Ambrosia</h1>
+        <p>Optimizing your nutrition</p>
+        <p>Enter your Information</p>
+        <form action="/nutrition_matcher/results" method="post">
+            <label for="age">Age:</label>
+            <input type="number" id="age" name="age" required max="100"><br><br>
+            <label for="height">Height:</label>
+            <input type="text" id="height" name="height" required><br><br>
+            <label for="gender">Gender:</label>
+            <select id="gender" name="gender" required>
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+                <option value="other">Other</option>
+            </select><br><br>
+        </form> 
     </div>
 {% endblock %}
