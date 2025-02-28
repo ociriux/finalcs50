@@ -25,43 +25,75 @@
                             </div>
                             <div class="modal-body">
                                 <form action="/nutrition_matcher/results" method="post">
-
                                     <div id="accordion">
-
                                         <div class="card my-1">
-                                          <div class="card-header collapsed btn" data-bs-toggle="collapse" href="#collapseOne">
-                                              Calorie Target
-                                          </div>
-                                          <div id="collapseOne" class="collapse" data-bs-parent="#accordion">
-                                            <div class="card-body">
-                                              Lorem ipsum..
+                                            <div class="card-header collapsed btn" data-bs-toggle="collapse" href="#collapseOne">
+                                                Calorie Target
                                             </div>
-                                          </div>
+                                            <div id="collapseOne" class="collapse" data-bs-parent="#accordion">
+												<div class="card-body d-flex flex-column">
+													<div class="d-flex row">
+														<div class="btn-group-vertical col">
+															<button type="button" class="btn btn-primary">Male</button>
+															<button type="button" class="btn btn-primary">Female</button>
+															<button type="button" class="btn btn-primary">Other</button>
+														</div>
+														<div class="col">
+															<div>
+																<input class="form-control" type="number" name="age" placeholder="Age">
+															</div>
+															<div class="input-group">
+																<input class="form-control" type="number" name="height" placeholder="Height">
+																<span class="input-group-text">cm</span>
+															</div>
+														</div>
+													</div>
+													Activity Level
+													<div class="d-flex row">
+														<div class="btn-group">
+															<button type="button" class="btn btn-primary" value="1">Low</button>
+  															<button type="button" class="btn btn-primary">Average</button>
+  															<button type="button" class="btn btn-primary">Moderate</button>
+															<button type="button" class="btn btn-primary">Sporty</button>
+														</div>
+													</div>
+													<hr>
+													<div class="d-flex row">
+														<div class="col-6">
+															<div class="input-group">
+																<input class="form-control" type="number" name="kcalInput" min="0" max="5000" step="50" value="0" oninput="this.form.kcalSlider.value=this.value"/>
+																<span class="input-group-text">kcal</span>
+															</div>
+															<input class="" type="range" name="kcalSlider" min="0" max="5000" step="50" value="0" oninput="this.form.kcalInput.value=this.value"/>
+                    	                        		</div>
+													</div>	
+												</div>	
+                                            </div>
                                         </div>
                                       
                                         <div class="card my-1">
-                                          <div class="card-header collapsed btn" data-bs-toggle="collapse" href="#collapseTwo">
-                                              Macro Nutrient Target
-                                          </div>
-                                          <div id="collapseTwo" class="collapse" data-bs-parent="#accordion">
-                                            <div class="card-body">
-                                              Lorem ipsum..
+                                            <div class="card-header collapsed btn" data-bs-toggle="collapse" href="#collapseTwo">
+                                                Macro Nutrient Target
                                             </div>
-                                          </div>
+                                            <div id="collapseTwo" class="collapse" data-bs-parent="#accordion">
+                                                <div class="card-body">
+                                                    Lorem ipsum..
+                                                </div>
+                                            </div>
                                         </div>
                                       
                                         <div class="card my-1">
-                                          <div class="card-header collapsed btn" data-bs-toggle="collapse" href="#collapseThree">
-                                              Micro Nutrient Target
-                                          </div>
-                                          <div id="collapseThree" class="collapse" data-bs-parent="#accordion">
-                                            <div class="card-body">
-                                              Lorem ipsum..
+                                            <div class="card-header collapsed btn" data-bs-toggle="collapse" href="#collapseThree">
+                                                Micro Nutrient Target
                                             </div>
-                                          </div>
+                                            <div id="collapseThree" class="collapse" data-bs-parent="#accordion">
+                                                <div class="card-body">
+                                                    Lorem ipsum..
+                                                </div>
+                                            </div>
                                         </div>
-                                      
-                                      </div>
+                
+                                        </div>
                                     <button type="submit" class="btn btn-primary px-3 rounded-pill mt-3">Find Match</button>
                                 </form>
                             </div>
