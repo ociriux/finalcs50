@@ -5,9 +5,10 @@ from usda_sync.models import Food, Nutrient, FoodSpec
 import requests
 
 def index(request):
+    nutrients = Nutrient.objects.all().order_by('description')
     template = loader.get_template('index.html')
     context = {
-        'user' : 'Chef',
+        'nutrients' : nutrients,
     }
     return HttpResponse(template.render(context, request))
 
