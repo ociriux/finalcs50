@@ -1,0 +1,79 @@
+<!-- matched.html -->
+{% if matched_food %}
+    <h2>Matching Foods</h2>
+    <table class="table table-hover">
+        <tbody>
+            {% for food in matched_food %}
+                <tr>
+                    <td>
+
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#{{food.id}}">
+                            {{ food.description }}
+                        </button>
+
+                        <div class="modal fade" id="{{food.id}}">
+                            <div class="modal-dialog modal-dialog-centered">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h4 class="modal-title">{{ food.description }}</h4>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                                    </div>
+                                    <div class="d-flex flex-column modal-body">
+                                        <ul>
+                                            {% for spec in food.foodspec_set.all %}
+                                                <li {% if spec.nutrient.id in target_nutrient_ids %} class="text-bg-warning" {% endif %}>
+                                                    {{ spec.nutrient.id }} - {{ spec.nutrient.description }}: {{ spec.amount }} {{ spec.nutrient.unit }}
+                                                </li>
+                                            {% endfor %}
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% else %}
+    <p>No matching foods found.</p>
+{% endif %}
+
+
+<!-- matched.html 
+{% if matched_food %}
+    <h2>Matching Foods</h2>
+    <div id="accordion">
+        {% for food in matched_food %}
+        <div class="card my-1">
+            <div class="card-header collapsed btn text-start" data-bs-toggle="collapse" href="#{{ food.id }}">
+                {{ food.description }}
+            </div>
+            <div id="{{ food.id }}" class="collapse" data-bs-parent="#accordion">
+                <div class="card-body">
+                    <!-- Liste aller Nutrients für dieses Food
+                    <ul>
+                        {% for spec in food.foodspec_set.all %}
+                            <li>
+                                {{ spec.nutrient.description }}: {{ spec.amount }} {{ spec.nutrient.unit }}
+                            </li>
+                        {% empty %}
+                            <li>No nutrient data available.</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+{% else %}
+    <p>No matching foods found.</p>
+{% endif %}
+
+
+
+
+
+
+onclick="window.location='/food/details/{{ food.id }}'"-->

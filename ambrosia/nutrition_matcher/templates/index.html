@@ -5,8 +5,8 @@
 {% endblock %}
 
 {% block main %}
-    <div class="d-flex row align-items-md-center h-50">
-        <div class="d-flex flex-column col-md-4 text-md-start text-center px-md-0 px-5">
+    <div class="d-flex row align-self-md-center justify-content-md-between h-75">
+        <div class="d-flex flex-column col-md-4 text-md-start text-center">
             <div>
                 <h1>Eat What You <strong class="text-warning">Need</strong>, Not What You Get</h1>
                 <p>Our nutrition matcher will help you find the best food for your needs. Just enter your information and we will provide you with the best food for you.</p>
@@ -24,11 +24,12 @@
                                 <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                             </div>
                             <div class="d-flex flex-column modal-body">
-                                <form action="/nutrition_matcher/results" method="post">
-                                    <select multiple class="form-select" style="height: 20rem;">
-                                        {% for x in nutrients %}
-                                            <option>
-                                                {{ x.description }}
+                                <form id="nutrient_form" action="/nutrition_matcher/" method="post">
+                                    {% csrf_token %}
+                                    <select name="nutrient_target" multiple class="form-select" style="height: 20rem;">
+                                        {% for nutrient in nutrients %}
+                                            <option value="{{nutrient.id}}">
+                                                {{ nutrient.description }} [{{ nutrient.unit }}]
                                             </option>
                                         {% endfor %}
                                     </select>
@@ -117,5 +118,47 @@
                 </div>
             </div>
         </div>
+        <div class="d-flex flex-column col-md-7">
+            <div id="results" class=""></div>
+        </div>
     </div>
+
+    <!-- Modal für Details -->
+<div class="modal fade" id="detailsModal" tabindex="-1" aria-labelledby="detailsModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="detailsModalLabel">Food Details</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <!-- Hier werden die Detailinformationen geladen -->
+          <div id="detailsContent"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+    <script>
+        var form = document.getElementById("nutrient_form");
+        form.addEventListener("submit", function(event) {
+            event.preventDefault();
+            var formData = new FormData(form);
+            fetch("/nutrition_matcher/", {
+                method: "POST",
+                body: formData,
+                headers: {
+                    "X-CSRFToken": document.querySelector("[name=csrfmiddlewaretoken]").value
+                }
+            })
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById("results").innerHTML = data;
+            })
+            .catch(error => {
+                console.error("Error:", error);
+            });
+        });
+    </script>
+
 {% endblock %}
