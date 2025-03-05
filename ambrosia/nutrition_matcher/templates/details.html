@@ -7,7 +7,7 @@
     <div class="mycard">
         <h1>{{ food.description }}</h1>
         <p>Macros / 100g</p>
-        {% for x in food_specs %}
+        {% for x in foodspecs %}
             <p>[{{ x.nutrient.id }}] {{ x.nutrient }}: {{ x.amount }}{{ x.nutrient.unit }}</p>
         {% endfor %}
     </div>

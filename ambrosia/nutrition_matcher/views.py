@@ -6,10 +6,12 @@ from . import matcher
 import requests
 
 def index(request):
-    nutrients = Nutrient.objects.all().order_by('description')
     template = loader.get_template('index.html')
+    foods = Food.objects.all().order_by('description')
+    nutrients = Nutrient.objects.all().order_by('description')
+    foodspecs = FoodSpec.objects.all()
     context = {
-        'nutrients' : nutrients,
+        'foods' : foods, 'nutrients' : nutrients, 'foodspecs' : foodspecs,
     }
     return HttpResponse(template.render(context, request))
 
@@ -34,9 +36,9 @@ def food(request):
 
 def details(request, id):
     food = Food.objects.get(id=id)
-    food_specs = FoodSpec.objects.filter(food_id=id).order_by('nutrient')
+    foodspecs = FoodSpec.objects.filter(food_id=id).order_by('nutrient')
     template = loader.get_template('details.html')
     context = {
-        'food_specs' : food_specs, 'food' : food,
+        'foodspecs' : foodspecs, 'food' : food,
     }
     return HttpResponse(template.render(context, request))
