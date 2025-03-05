@@ -8,7 +8,7 @@ class NutrientAdmin(admin.ModelAdmin):
     list_display = ('id', 'description', 'unit',)
 
 class FoodSpecAdmin(admin.ModelAdmin):
-    list_display = ('food', 'nutrient', 'amount',)
+    list_display = ('food', 'nutrient', 'amount', 'score')
 
 admin.site.register(Food, FoodAdmin)
 admin.site.register(Nutrient, NutrientAdmin)

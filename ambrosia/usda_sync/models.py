@@ -23,6 +23,7 @@ class FoodSpec(models.Model):
     food = models.ForeignKey(Food, on_delete=models.CASCADE)
     nutrient = models.ForeignKey(Nutrient, on_delete=models.CASCADE)
     amount = models.FloatField(default=0)
+    score = models.FloatField(default=0)
 
     class Meta:
         unique_together = ('food', 'nutrient')

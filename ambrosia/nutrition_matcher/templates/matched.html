@@ -22,7 +22,7 @@
                                         <ul>
                                             {% for spec in food.foodspec_set.all %}
                                                 <li {% if spec.nutrient.id in target_nutrient_ids %} class="text-bg-warning" {% endif %}>
-                                                    {{ spec.nutrient.id }} - {{ spec.nutrient.description }}: {{ spec.amount }} {{ spec.nutrient.unit }}
+                                                    {{ spec.nutrient.id }} - {{ spec.nutrient.description }}: {{ spec.amount }} {{ spec.nutrient.unit }} [{{ spec.score}}%]
                                                 </li>
                                             {% endfor %}
                                         </ul>
