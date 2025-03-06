@@ -5,9 +5,13 @@
 {% endblock %}
 
 {% block main %}
-    <div class="d-flex row justify-content-md-between">
+    <div class="d-flex row justify-content-md-between mt-5">
         <div class="d-flex flex-column col-md-5 text-md-start text-center">
             <div>
+
+<p id="demo"></p>
+
+
                 <h1>Eat What You <strong class="text-warning">Need</strong>, Not What You Get</h1>
                 <p>Our nutrition matcher will help you find the best food for your needs. Just enter your information and we will provide you with the best food for you.</p>
             </div>
@@ -48,7 +52,7 @@
         <div class="d-flex flex-column col-md-6 text-md-start text-center">
             <div class="">
 
-                <h1 id="selected_food" data-bs-toggle="collapse" data-bs-target="#food_list" value="1123">Eggs, Grade A, Large, egg whole</h1>
+                <h1 class="mb-3" id="selected_food" data-bs-toggle="collapse" data-bs-target="#food_list" value="1123">Eggs, Grade A, Large, egg whole</h1>
                     <div id="food_list" class="collapse">
                         <div style="height: 20rem; overflow-y: scroll;">
                             <table class="table table-hover">
@@ -64,15 +68,227 @@
                     </div>
                 </div>
 
-                <div class="container border p-3">
-                    <h3>Ø N U T R I T I O N / 1 O O G</h3>
 
-                    <div id="nutrition_label"></div>
+                <div class="container border border-2 border-secondary p-3">
+                    <h3>Ø N U T R I T I O N / 1 O O G</h3>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Nutrient</th>
+                                <th>Amount</th>
+                            </tr>
+                        </thead>
+                        <tbody class="border-5 border-secondary border-start-0 border-end-0">
+                            <tr class="border-5 border-secondary border-start-0 border-end-0" value="1008">
+                                <td>
+                                    <strong class="h3">Calories</strong>
+                                </td>
+                                <td>
+                                        {% if XXX.nutrient.id == 1008 %}
+                                           {{ XXX.amount }}
+                                        {% endif %}
+                                </td>
+                            </tr>
+                            <tr class="">
+                                <td>
+                                    <strong>Total Fat</strong>
+                                </td>
+                                <td>
+                                    <!---->
+                                </td>
+                                <td>
+                                    <!---->
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="ms-3">Saturated Fat</div>
+                                </td>
+                                <td>
+                                    <!---->
+                                </td>
+                                <td>
+                                    <!---->
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="ms-3">Unsaturated Fat</div>
+                                </td>
+                                <td>
+                                    <!---->
+                                </td>
+                                <td>
+                                    <!---->
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="ms-3">Trans Fat</div>
+                                </td>
+                                <td>
+                                    <!---->
+                                </td>
+                                <td>
+                                    <!---->
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <strong>Cholesterol</strong>
+                                </td>
+                                <td>
+                                    <!---->
+                                </td>
+                                <td>
+                                    <!---->
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <strong>Sodium</strong>
+                                </td>
+                                <td>
+                                    <!---->
+                                </td>
+                                <td>
+                                    <!---->
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <strong>Total Carbohydrate</strong>
+                                </td>
+                                <td>
+                                    <!---->
+                                </td>
+                                <td>
+                                    <!---->
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="ms-3">Dietary Fiber</div>
+                                </td>
+                                <td>
+                                    <!---->
+                                </td>
+                                <td>
+                                    <!---->
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="ms-3">Total Sugars</div>
+                                </td>
+                                <td>
+                                    <!---->
+                                </td>
+                                <td>
+                                    <!---->
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <strong>Protein</strong>
+                                </td>
+                                <td>
+                                    <!---->
+                                </td>
+                                <td>
+                                    <!---->
+                                </td>
+                            </tr>
+                        </tbody>
+                        <tbody class="border-5 border-secondary border-start-0 border-end-0">
+                            <tr>
+                                <td>
+                                    <strong class="h3">Vitamins</strong>
+                                </td>
+                                <td>
+                                    <!---->
+                                </td>
+                                <td>
+                                    <!---->
+                                </td>
+                            </tr>
+                            {% for food in foods %}
+                            
+                            {% endfor %}
+                        </tbody>
+                        <tbody class="border-5 border-secondary border-start-0 border-end-0">
+                            <tr>
+                                <td>
+                                    <strong class="h3">Minerals</strong>
+                                </td>
+                                <td>
+                                    <!---->
+                                </td>
+                                <td>
+                                    <!---->
+                                </td>
+                            </tr>
+                            {% for food in foods %}
+                            
+                            {% endfor %}
+                        </tbody>
+                        <tbody class="border-5 border-secondary border-start-0 border-end-0">
+                            <tr>
+                                <td>
+                                    <strong class="h3">Fatty Acids</strong>
+                                </td>
+                                <td>
+                                    <!---->
+                                </td>
+                                <td>
+                                    <!---->
+                                </td>
+                            </tr>
+                            {% for food in foods %}
+                            
+                            {% endfor %}
+                        </tbody>
+                        <tbody class="border-5 border-secondary border-start-0 border-end-0">
+                            <tr>
+                                <td>
+                                    <strong class="h3">Sugars</strong>
+                                </td>
+                                <td>
+                                    <!---->
+                                </td>
+                                <td>
+                                    <!---->
+                                </td>
+                            </tr>
+                            {% for food in foods %}
+                            
+                            {% endfor %}
+                        </tbody>
+                        <tbody class="border-5 border-secondary border-start-0 border-end-0">
+                            <tr>
+                                <td>
+                                    <strong class="h3">Amino Acids</strong>
+                                </td>
+                                <td>
+                                    <!---->
+                                </td>
+                                <td>
+                                    <!---->
+                                </td>
+                            </tr>
+                            {% for food in foods %}
+                            
+                            {% endfor %}
+                        </tbody>
+                    </table>
                 </div>
+
+
             </div>
         </div>
     </div>
 
+    <!-- Javascript for accessing the food matcher and outputting the best matches -->
     <script>
         var form = document.getElementById("nutrient_form");
         form.addEventListener("submit", function(event) {
@@ -93,6 +309,20 @@
                 console.error("Error:", error);
             });
         });
+    </script>
+
+    <!-- Javascript for updating the nutrition label -->
+    <script>
+
+        var selected = document.getElementById("selected_food");
+        var selected_id = selected.getAttribute("value");
+
+        selected.addEventListener("mouseover", function() {
+            document.getElementById('demo').innerHTML = selected_id;
+            selected_id = selected.getAttribute("value");
+        });
+
+
     </script>
 
 {% endblock %}
