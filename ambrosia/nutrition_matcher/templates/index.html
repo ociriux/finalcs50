@@ -45,18 +45,23 @@
                 <div id="results" class=""></div>
             </div>
         </div>
-        <div class="d-flex flex-column col-md-5 text-md-start text-center">
+        <div class="d-flex flex-column col-md-6 text-md-start text-center">
             <div class="">
 
-                <h1 data-bs-toggle="collapse" data-bs-target="#demo">XXXXX</h1>
-                <div id="demo" class="collapse">
-                    <select name="XXXXX" multiple id="foodDropdown" class="form-select">
-                        {% for food in foods %}
-                            <option value="{{ food.id }}">
-                                {{ food.description }}
-                            </option>
-                        {% endfor %}
-                    </select>
+                <h1 id="selected_food" data-bs-toggle="collapse" data-bs-target="#food_list" value="1123">Eggs, Grade A, Large, egg whole</h1>
+                    <div id="food_list" class="collapse">
+                        <div style="height: 20rem; overflow-y: scroll;">
+                            <table class="table table-hover">
+                                <tbody>
+                                    {% for food in foods %}
+                                        <tr onclick="var selected = document.getElementById('selected_food'); selected.value = '{{ food.id }}'; selected.innerText = '{{ food.description }}'">
+                                            <td>[{{ food.id }}] {{ food.description }} - {{ food.category }}</td>
+                                        </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="container border p-3">
@@ -67,22 +72,6 @@
             </div>
         </div>
     </div>
-
-    <!-- Modal für Details -->
-<div class="modal fade" id="detailsModal" tabindex="-1" aria-labelledby="detailsModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="detailsModalLabel">Food Details</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          <!-- Hier werden die Detailinformationen geladen -->
-          <div id="detailsContent"></div>
-        </div>
-      </div>
-    </div>
-  </div>
 
     <script>
         var form = document.getElementById("nutrient_form");

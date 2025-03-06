@@ -1,38 +1,15 @@
 <!-- matched.html -->
 {% if matched_food %}
     <h2>Matching Foods</h2>
-    <table class="table table-hover">
-        <tbody>
+    <div class="">
             {% for food in matched_food %}
-                <tr>
-                    <td>
 
-                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#{{food.id}}">
-                            {{ food.description }}
-                        </button>
+                <button type="button" class="btn btn-primary rounded-pill mx-1 my-1" onclick="var selected = document.getElementById('selected_food'); selected.value = '{{ food.id }}'; selected.innerText = '{{ food.description }}'">
+                    {{ food.description }}
+                </button>
 
-                        <div class="modal fade" id="{{food.id}}">
-                            <div class="modal-dialog modal-dialog-centered">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h4 class="modal-title">{{ food.description }}</h4>
-                                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                                    </div>
-                                    <div class="d-flex flex-column modal-body">
-                                            {% for spec in food.foodspec_set.all %}
-                                                <p {% if spec.nutrient.id in target_nutrient_ids %} class="text-bg-warning" {% endif %}>
-                                                    {{ spec.nutrient.description }}: {{ spec.amount }} {{ spec.nutrient.unit }} [{{ spec.score}}%]
-                                                </p>
-                                            {% endfor %}
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </td>
-                </tr>
             {% endfor %}
-        </tbody>
-    </table>
+    </div>
 {% else %}
     <p>No matching foods found.</p>
 {% endif %}
