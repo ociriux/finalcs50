@@ -26,6 +26,16 @@ def nutrition_matcher(request):
         return render(request, "matched.html", context)
     return HttpResponse("Invalid request", status=400)
 
+def build_label(request):
+    if request.method == "POST":
+        selected = request.POST.getlist("id")
+        foodspecs = FoodSpec.objects.filter(selected=id)
+        context = {
+            'foodspecs' : foodspecs,
+        }
+        return render(request, "label.html", context)
+    return HttpResponse("Invalid request", status=400)
+
 def food(request):
     food = Food.objects.all().order_by('id')
     template = loader.get_template('food.html')
