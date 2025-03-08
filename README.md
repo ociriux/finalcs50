@@ -140,4 +140,6 @@ This App was implemented to:
 - Meal planning suggestions
 - Mobile app development
 
-AI Tools were only used for research and learning purposes. Every lijne of code for this project is written by myself.
+
+
+AI Tools were only used for research and learning purposes. Every line of code for this project is written by myself.
