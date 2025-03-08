@@ -23,7 +23,7 @@ Project #finalcs50
     |   └── settings.py         # FOUNDATION_FOODS_DOWNLOAD_URL is used by food_data_sync()
     ├── nutrition_matcher       # Main app that handles core functions
     │   ├── static
-    │   |   └── styles.css      # CSS for navbar transparancy 
+    │   │   └── styles.css      # CSS for navbar transparancy 
     │   ├── templates           
     │   │   ├── master.html     # General web app template
     │   │   ├── index.htmlw     # Dashboard with core functionality
