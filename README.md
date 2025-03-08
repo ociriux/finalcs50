@@ -1,69 +1,141 @@
 # AMBROSIA - Optimizing Your Nutrition
 
-#### Video Demo:  [URL HERE]
+#### Video Demo: [URL HERE]
 
-#### Description:
+## Overview
+Ambrosia is a dynamic web application that helps users optimize their nutrition by matching foods to their specific nutrient needs. Built primarily with Django, JavaScript and Bootstrap, it leverages the USDA's FoodData Central "Foundation Foods" database to provide accurate, up-to-date nutritional information.
 
+## Key Features
+- **Smart Nutrient Matching**: Input any combination of nutrients, and Ambrosia finds the top 20 foods that best    satisfy those requirements
+- **Interactive Nutrient Labels**: Click any food to view its comprehensive nutritional profile
+- **Fast And Dynamic Dashboard**: Use the nutrition matcher and quickly look through food-nutrient data without reloading the page
+- **Semi-Automatic Database Updates**: Synchronization System, that runs on server start when provided a new URL
+- **Scoring System**: Foods are ranked based on their relative nutrient concentrations between other foods. When using the nutrition matcher, foods get picked based on average score between selected nutrients in a food
+- **Food Browser**: Browse and search through the complete food and nutrient database
+
+## Technical Architecture
+
+### Core Structure
+```bash
 Project #finalcs50
-├── ambrosia
-│   ├── nutrition_matcher
-│   │   ├── __init__.py
-│   │   ├── admin.py
-│   │   ├── apps.py
-│   │   ├── matcher.py
-│   │   ├── models.py
-│   │   ├── tests.py
-│   │   ├── urls.py
-│   │   ├── views.py
-│   │   ├── templates
-│   │   │   ├── index.html
-│   │   │   ├── master.html
-│   │   ├── static
-│   │   │   ├── styles.css
-│   ├── usda_sync
-│   │   ├── __init__.py
-│   │   ├── admin.py
-│   │   ├── apps.py
-│   │   ├── models.py
-│   │   ├── tasks.py
-│   │   ├── tests.py
-│   │   ├── urls.py
-│   │   ├── views.py
-│   │   ├── management
-│   │   │   ├── commands
-│   │   │   │   ├── sync_usda.py
-│   ├── ambrosia
-│   │   ├── __init__.py
-│   │   ├── settings.py
-│   │   ├── urls.py
-│   │   ├── wsgi.py
-│   │   ├── asgi.py
-├── manage.py
-├── README.md
-├── requirements.txt
+└── ambrosia
+    ├── ambrosia
+    |   └── settings.py         # FOUNDATION_FOODS_DOWNLOAD_URL is used by food_data_sync()
+    ├── nutrition_matcher       # Main app that handles core functions
+    │   ├── static
+    │   |   └── styles.css      # CSS for navbar transparancy 
+    │   ├── templates           
+    │   │   ├── master.html     # General web app template
+    │   │   ├── index.htmlw     # Dashboard with core functionality
+    │   │   ├── matched.html    # Renders top matches given by find_top_matches()
+    │   │   └── label.html      # Renders the dynamic nutrition label
+    │   ├── matcher.py          # Contains the core matching algorithm
+    │   └── views.py            # Handles web requests and data presentation
+    ├── usda_sync               # App that handles data synchronization
+    │   ├── apps.py             # Runs food_data_sync() on server start
+    │   ├── models.py           # Defines Food, Nutrient, and FoodSpec models
+    │   └── sync.py             # Checks for a new URL in settings.py, downloads data, feeds data into models, rates food-nutrient combinations
+    └── requirements.txt        # Install dependencies with pip install -r requirements.txt
+```
 
+## How It Works
 
-Ambrosia is a Food-Matching Web Application primarily implemented with Python, Django, HTML, Bootstrap, and JavaScript. The application allows users to input a set of nutrients, and it generates a selection of foods from the database that best cover the selected nutrients. Users can search for one nutrient or multiple nutrients, and the algorithm will provide the top 20 foods that offer the best chance of acquiring those nutrients.
+### Core Functionality Flow
+1. **Initial User Input**
+   - Click "Get Started" to open the nutrient selection modal
+   - Choose one or more nutrients from the comprehensive list
+   - Submit selection to trigger the matching process
 
-The main page is designed to be fast, responsive, and dynamic. Users can click on any food item, and a comprehensive nutrient label is generated, showing all relevant information from the database. Additionally, users can browse the foods and their nutrients in the database independently of the matching algorithm.
+2. **Food Matching Process**
+   ```python
+   # matcher.py handles the core matching logic
+   def find_top_matches(nutrient_ids):
+       return Food.objects.filter(foodspec__nutrient__id__in=nutrient_ids)
+           .annotate(
+               average_score=1.0 * Sum('foodspec__score') / Count('foodspec__nutrient')
+           )
+           .order_by('-average_score')[:20]
+   ```
+   - Backend receives nutrient IDs via POST to `/nutrition_matcher/`
+   - `find_top_matches()` calculates optimal foods based on:
+     - Presence of selected nutrients
+     - Average nutrient concentration scores
+     - Returns top 20 matches
 
-One special feature of the database is the `usda_sync` app. This app allows users to set a URL to the latest downloadable data from the USDA's FoodData Central, ensuring that Ambrosia's database is updated automatically. `usda_sync` checks for a new URL every time the server starts. If a new URL is set in the settings and it is not already saved in the `LastUpdate` model, the data updating process begins. After importing food and nutrient data into the `Food` and `Nutrient` models, the data is used to build the `FoodSpec` model, which models the relationship between foods and nutrients. Each food and its nutrient are rated based on their relative concentration, with the highest nutrient amount between foods receiving a score of 100. This score is ultimately used to help the `nutrition_matcher` match foods to a nutrient selection.
+3. **Dynamic Results Display**
+   - JavaScript handles the matching response
+   - Renders food matches as interactive buttons
+   - Updates the dashboard without page reload
 
-#### Project Structure:
-- `matcher.py`: Contains the core algorithm for finding the top food matches based on selected nutrients. The `find_top_matches` function filters foods by nutrient IDs, calculates total and average scores, and returns the top 20 foods.
-- `usda_sync`: An app responsible for syncing the database with the latest data from the USDA's FoodData Central. It checks for new URLs, updates the database, and builds the `FoodSpec` model.
-- `templates`: Contains HTML templates for the web application, including the main page and modal forms for user input.
-- `static`: Contains static files such as CSS and JavaScript for styling and interactivity.
+4. **Nutrition Label Generation**
+   - Click any food to view detailed nutrition information
+   - System sends food ID via POST to `/build_label/`
+   - Backend organizes nutrient data into categorical maps
+   - JavaScript handles the map response
+   - Renders food specs as FDA style nutrition label
+   - Updates the dashboard without page reload
 
-#### Design Choices:
-1. **Algorithm for Matching Foods**: The algorithm in `matcher.py` was designed to prioritize foods based on their nutrient concentration. The decision to use both total and average scores ensures that foods with a high concentration of multiple nutrients are prioritized.
-2. **Responsive Design**: The use of Bootstrap ensures that the web application is responsive and user-friendly across different devices and screen sizes.
-3. **Automatic Database Updates**: The `usda_sync` app was implemented to automate the process of updating the database with the latest USDA data. This ensures that the application always has the most current information without manual intervention.
-4. **User Interaction**: The main page and modal forms were designed to be intuitive and easy to use. Users can quickly input their nutrient goals and receive immediate feedback on the best food matches.
+5. **Additional Features**
+   - Food browser accessible when clicking on food description over the nutriton label
+   - Each food selection triggers automatic label update
+   - All interactions handled asynchronously for smooth UX
 
-#### Future Enhancements:
-- **User Authentication**: Implementing user authentication to allow users to save their preferences and nutrient goals.
-- **Advanced Filtering**: Adding more advanced filtering options for users to refine their food searches based on dietary restrictions or preferences.
-- **Enhanced Visualization**: Improving the visualization of nutrient data with charts and graphs to provide users with a better understanding of their nutritional intake.
+## Installation
 
-Ambrosia aims to provide users with a powerful tool to optimize their nutrition by leveraging the latest data and advanced algorithms. We hope you find this project useful and informative.
+```bash
+# Clone the repository
+git clone https://github.com/ociriux/finalcs50.git
+
+# Create and activate virtual environment
+python -m venv .venv
+.venv\Scripts\Activate.ps1  # Windowws
+source .venv/bin/activate   # Unix/MacOS
+
+# Install dependencies
+pip install -r requirements.txt
+
+# Run migrations
+python manage.py migrate
+
+# Start the development server
+python manage.py runserver
+```
+
+## Design Decisions
+
+### Why Django?
+Django was chosen for its:
+- Robust ORM for complex database operations
+- Built-in admin interface for data management
+- Excellent documentation and community support
+- Strong security features
+- Learning a new back-end web framework besides flask
+
+### Scoring System
+The scoring system (0-100) was implemented to:
+- Normalize nutrient concentrations across different measurement units
+- Provide meaningful comparisons between foods
+- Support the ranking in the matching algorithm
+
+### Database Structure
+- **Food**: Basic food information
+- **Nutrient**: Nutrient definitions and units
+- **FoodSpec**: Many-to-many relationship with calculated scores
+- **LastUpdate**: Storing the last used URL to prevent food_data_sync() from running on every server start
+This structure is a result of the nested and repetitive nature of the Data provided by the USDA FoodData Central. It allows for efficient querying and flexible nutrient matching.
+
+### USDA Sync
+This App was implemented to:
+- Seperate the Project from the data, resulting in a smaller file size of the repositor
+- Allow for automatic synchronization of new food data
+- Only run updates when new data is provided by the user
+- Handle the integration of new data into the database
+
+## Concideration For Future Enhancements
+- Improving the find_top_matches() algorithm to get better at handling a lot of nutrients
+- Expanding the functionality to allow for kcal, macro- and micro-nutrient goals, thus functioning as a full-fledged nutrition coach
+- Building an own database, providing comprehensive and standardised food-data
+- User accounts for saving preferences and tracking progress
+- Custom diet profiles (vegan, keto, etc.)
+- Meal planning suggestions
+- Mobile app development
