@@ -20,7 +20,7 @@ Ambrosia is a dynamic web application that helps users optimize their nutrition 
 Project #finalcs50
 └── ambrosia
     ├── ambrosia
-    |   └── settings.py         # FOUNDATION_FOODS_DOWNLOAD_URL is used by food_data_sync()
+    │   └── settings.py         # FOUNDATION_FOODS_DOWNLOAD_URL is used by food_data_sync()
     ├── nutrition_matcher       # Main app that handles core functions
     │   ├── static
     │   │   └── styles.css      # CSS for navbar transparancy 
