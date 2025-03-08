@@ -1,6 +1,6 @@
 # AMBROSIA - Optimizing Your Nutrition
 
-#### Video Demo: [URL HERE]
+#### Video Demo: https://youtu.be/kM3EJvrNW2A
 
 ## Overview
 Ambrosia is a dynamic web application that helps users optimize their nutrition by matching foods to their specific nutrient needs. Built primarily with Django, JavaScript and Bootstrap, it leverages the USDA's FoodData Central "Foundation Foods" database to provide accurate, up-to-date nutritional information.
@@ -139,3 +139,5 @@ This App was implemented to:
 - Custom diet profiles (vegan, keto, etc.)
 - Meal planning suggestions
 - Mobile app development
+
+AI Tools were only used for research and learning purposes. Every lijne of code for this project is written by myself.

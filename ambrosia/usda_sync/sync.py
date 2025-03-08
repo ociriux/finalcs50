@@ -11,41 +11,41 @@ import time
 
 def food_data_sync():
     print("Starting food-data synchronization...")
-    url = settings.FOUNDATION_FOODS_DOWNLOAD_URL            # Load the URL from the settings.py file
-    if LastUpdate.objects.filter(url=url).exists():         # Check if the URL was already used
+    url = settings.FOUNDATION_FOODS_DOWNLOAD_URL
+    if LastUpdate.objects.filter(url=url).exists():
         print("No new url found, food-data is up-to-date")
         return
     
-    LastUpdate.objects.all().delete()                       # Delete the previous URL
-    LastUpdate(url=url).save()                              # Save the new URL as the last update
+    LastUpdate.objects.all().delete()
+    LastUpdate(url=url).save()
 
     print(f"Downloading data from {url}")
     
     try:
-        response = requests.get(url)                        # Send a GET request to the URL
-        response.raise_for_status()                         # Raise an exception if the status code is not 200
+        response = requests.get(url)
+        response.raise_for_status()
         
-        with BytesIO(response.content) as data_in_memory:           # Load the content of the response into a BytesIO object
-            with ZipFile(data_in_memory) as food_data_zip:          # Load the BytesIO object into a ZipFile object
+        with BytesIO(response.content) as data_in_memory:
+            with ZipFile(data_in_memory) as food_data_zip:
                 json_filename = food_data_zip.namelist()[0]
                 print(f"Found food-data in ZIP: {json_filename}")
         
-                with food_data_zip.open(json_filename) as json_file:        # Open the JSON file in the ZIP file
-                    food_data = json.load(json_file)                        # Load the JSON file into a Python dictionary   
+                with food_data_zip.open(json_filename) as json_file:
+                    food_data = json.load(json_file)
                     print("Successfully loaded JSON")
                     
                     print("Updating data...")
                     created_entries = 0
 
-                    for food in food_data['FoundationFoods']:                       # Iterate over the 'FoundationFoods' list in food_data
+                    for food in food_data['FoundationFoods']:
                         
                         conv_factors = food.get('nutrientConversionFactors', [])
                         if not conv_factors:
                             conv_factors = [{'proteinValue': 4.0, 'fatValue': 9.0, 'carbValue': 4.0}]                        
 
-                        food_item, created = Food.objects.update_or_create(         # Update or create a Food object
+                        food_item, created = Food.objects.update_or_create(
                             id = food.get('ndbNumber', ''),
-                            defaults = {                                                # Only search for the ndbNumber, if it doesn't exist, create a new object with the following attributes:
+                            defaults = {
                                 'description' : food.get('description', ''),
                                 'category' : food.get('foodCategory', {}).get('description', ''),
                                 'calorie_conversion_factor_protein' : conv_factors[0].get('proteinValue', '4.0'),
