@@ -1,6 +1,6 @@
 {% load static %}
 <!DOCTYPE html>
-<html lang="en" data-bs-theme="dark">
+<html lang="en" data-bs-theme="light">
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="initial-scale=1, width=device-width">
@@ -23,25 +23,18 @@
                         <div class="collapse navbar-collapse" id="mynavbar">
                             <ul class="navbar-nav me-auto">
                                 <li class="nav-item">
+                                    <a class="nav-link" href="/">Home</a>
+                                </li>
+                                <li class="nav-item">
                                     <a class="nav-link" href="/food">Food</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" href="/nutrients">Nutrients</a>
                                 </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="/health">Health</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="/">Link</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="/">Link</a>
-                                </li>
                             </ul>
-                            <form class="d-flex" action="/food" method="post">
-                                <input class="form-control me-2" type="text" placeholder="Search">
-                                <button class="btn btn-secondary" type="button">Search</button>
-                            </form>
+                            <div class="form-check form-switch">
+                                <input class="form-check-input" type="checkbox" id="darkModeSwitch" checked>
+                            </div>
                         </div>
                     </div>
                 </nav>
@@ -54,18 +47,41 @@
                 {% endblock %}
             </main>
         </div>
-        <footer class="footer mt-auto py-3 bg-light">
+        <footer class="footer mt-auto py-3">
             <div class="container">
                 <p class="text-muted">This is my final project for the CS50's Introduction to Computer Science Course.</p>
                 <span class="text-muted">© 2025 Ambrosia</span> 
                 <div class="text-muted">
                     <ul class="list-inline">
-                        <li class="list-inline-item"><a href="#">Home</a></li>
-                        <li class="list-inline-item"><a href="#">Food</a></li>
-                        <li class="list-inline-item"><a href="#">Nutrients</a></li>
+                        <li class="list-inline-item"><a href="/">Home</a></li>
+                        <li class="list-inline-item"><a href="/food">Food</a></li>
+                        <li class="list-inline-item"><a href="/nutrients">Nutrients</a></li>
                     </ul>
                 </div>
             </div>
         </footer>
     </body>
 </html>
+
+
+<!--Simple dark mode script from https://github.com/404GamerNotFound/bootstrap-5.3-dark-mode-light-mode-switch-->
+<script>
+    document.addEventListener('DOMContentLoaded', (event) => {
+    const htmlElement = document.documentElement;
+    const switchElement = document.getElementById('darkModeSwitch');
+
+    const currentTheme = localStorage.getItem('bsTheme') || 'light';
+    htmlElement.setAttribute('data-bs-theme', currentTheme);
+    switchElement.checked = currentTheme === 'dark';
+
+    switchElement.addEventListener('change', function () {
+        if (this.checked) {
+            htmlElement.setAttribute('data-bs-theme', 'dark');
+            localStorage.setItem('bsTheme', 'dark');
+        } else {
+            htmlElement.setAttribute('data-bs-theme', 'light');
+            localStorage.setItem('bsTheme', 'light');
+        }
+    });
+});
+</script>

@@ -7,4 +7,5 @@ urlpatterns = [
     path('build_label/', views.build_label, name='build_label'),
     path('food/', views.food, name='food'),
     path('food/details/<int:id>', views.details, name='details'),
+    path('nutrients/', views.nutrients, name='nutrients'),
 ]

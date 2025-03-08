@@ -6,9 +6,16 @@
 {% block main %}
     <div class="mycard">
         <h1>{{ food.description }}</h1>
-        <p>Macros / 100g</p>
-        {% for x in foodspecs %}
-            <p>[{{ x.nutrient.id }}] {{ x.nutrient }}: {{ x.amount }}{{ x.nutrient.unit }}</p>
-        {% endfor %}
+        <p>Ø N U T R I T I O N / 1 O O G</p>
+        <table class="table">
+            <tbody>
+                {% for x in foodspecs %}
+                    <tr>
+                        <td>{{ x.nutrient }}</td>
+                        <td>{{ x.amount }}{{ x.nutrient.unit }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
     </div>
 {% endblock %}

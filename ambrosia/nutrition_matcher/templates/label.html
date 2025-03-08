@@ -1,213 +1,326 @@
 <!-- label.html -->
-{% if selected_foodspecs %}
-<table class="table">
-    <thead>
-        <tr>
-            <th>Nutrient</th>
-            <th>Amount</th>
-        </tr>
-    </thead>
-    <tbody class="border-5 border-secondary border-start-0 border-end-0">
-        <tr class="border-5 border-secondary border-start-0 border-end-0" value="1008">
+<div class="container border border-2 border-secondary text-start pt-3">
+    <h3 class="pb-3"><strong>Ø N U T R I T I O N / 1 O O G</strong></h3>
+    <table class="table-sm w-100">
+        <thead>
+            <tr>
+                <th>Nutrient</th>
+                <th>Amount</th>
+                <th>RNCS*</th>
+            </tr>
+        </thead>
+        <tbody class="border-5 border-secondary border-start-0 border-end-0">
+            <tr class="border-5 border-secondary border-start-0 border-end-0" value="2047">
+                <td>
+                    <strong class="h3">Calories</strong>
+                </td>
+                <td>
+                    {{ proximates_map.1008.amount }} {{ proximates_map.1008.nutrient.unit }}
+                </td>
+                <td>
+                    {{ proximates_map.1008.score }}
+                </td>
+            </tr>
+            <tr class="border-bottom border-muted">
+                <td>
+                    <strong>Total Fat</strong>
+                </td>
+                <td>
+                    {{ proximates_map.1004.amount }} {{ proximates_map.1004.nutrient.unit }}
+                </td>
+                <td>
+                    {{ proximates_map.1004.score }}
+                </td>
+            </tr>
+            <tr class="border-bottom border-muted">
+                <td>
+                    <div class="ms-3">Saturated Fat</div>
+                </td>
+                <td>
+                    {{ proximates_map.1258.amount }} {{ proximates_map.1258.nutrient.unit }}
+                </td>
+                <td>
+                    {{ proximates_map.1258.score }}
+                </td>
+            </tr>
+            <tr class="border-bottom border-muted">
+                <td>
+                    <div class="ms-3">Monounsaturated Fat</div>
+                </td>
+                <td>
+                    {{ proximates_map.1292.amount }} {{ proximates_map.1292.nutrient.unit }}
+                </td>
+                <td>
+                    {{ proximates_map.1292.score }}
+                </td>
+            </tr>
+            <tr class="border-bottom border-muted">
+                <td>
+                    <div class="ms-3">Polyunsaturated Fat</div>
+                </td>
+                <td>
+                    {{ proximates_map.1293.amount }} {{ proximates_map.1293.nutrient.unit }}
+                </td>
+                <td>
+                    {{ proximates_map.1293.score }}
+                </td>
+            </tr>
+            <tr class="border-bottom border-muted">
+                <td>
+                    <div class="ms-3">Trans Fat</div>
+                </td>
+                <td>
+                    {{ proximates_map.1257.amount }} {{ proximates_map.1257.nutrient.unit }}
+                </td>
+                <td>
+                    {{ proximates_map.1257.score }}
+                </td>
+            </tr>
+            <tr class="border-bottom border-muted">
+                <td>
+                    <strong>Cholesterol</strong>
+                </td>
+                <td>
+                    {{ proximates_map.1253.amount }} {{ proximates_map.1253.nutrient.unit }}
+                </td>
+                <td>
+                    {{ proximates_map.1253.score }}
+                </td>
+            </tr>
+            <tr class="border-bottom border-muted">
+                <td>
+                    <strong>Sodium</strong>
+                </td>
+                <td>
+                    {{ proximates_map.1093.amount }} {{ proximates_map.1093.nutrient.unit }}
+                </td>
+                <td>
+                    {{ proximates_map.1093.score }}
+                </td>
+            </tr>
+            <tr class="border-bottom border-muted">
+                <td>
+                    <strong>Total Carbohydrate</strong>
+                </td>
+                <td>
+                    {{ proximates_map.1005.amount }} {{ proximates_map.1005.nutrient.unit }}
+                </td>
+                <td>
+                    {{ proximates_map.1005.score }}
+                </td>
+            </tr>
+            <tr class="border-bottom border-muted">
+                <td>
+                    <div class="ms-3">Dietary Fiber</div>
+                </td>
+                <td>
+                    {{ proximates_map.1079.amount }} {{ proximates_map.1079.nutrient.unit }}
+                </td>
+                <td>
+                    {{ proximates_map.1079.score }}
+                </td>
+            </tr>
+            <tr class="border-bottom border-muted">
+                <td>
+                    <div class="ms-3">Total Sugars</div>
+                </td>
+                <td>
+                    {{ proximates_map.1063.amount }} {{ proximates_map.1063.nutrient.unit }}
+                </td>
+                <td>
+                    {{ proximates_map.1063.score }}
+                </td>
+            </tr>
+            <tr class="border-bottom border-muted">
+                <td>
+                    <strong>Protein</strong>
+                </td>
+                <td>
+                    {{ proximates_map.1003.amount }} {{ proximates_map.1003.nutrient.unit }}
+                </td>
+                <td>
+                    {{ proximates_map.1003.score }}
+                </td>
+            </tr>
+            <tr class="border-bottom border-muted">
+                <td>
+                    <strong>Nitrogen</strong>
+                </td>
+                <td>
+                    {{ proximates_map.1002.amount }} {{ proximates_map.1002.nutrient.unit }}
+                </td>
+                <td>
+                    {{ proximates_map.1002.score }}
+                </td>
+            </tr>
+            <tr class="border-bottom border-muted">
+                <td>
+                    <strong>Water</strong>
+                </td>
+                <td>
+                    {{ proximates_map.1051.amount }} {{ proximates_map.1051.nutrient.unit }}
+                </td>
             <td>
-                <strong class="h3">Calories</strong>
-            </td>
-            <td>
-                <div id="demo"></div>
-            </td>
-        </tr>
-        <tr class="">
-            <td>
-                <strong>Total Fat</strong>
-            </td>
-            <td>
-                <!---->
-            </td>
-            <td>
-                <!---->
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <div class="ms-3">Saturated Fat</div>
-            </td>
-            <td>
-                <!---->
-            </td>
-            <td>
-                <!---->
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <div class="ms-3">Unsaturated Fat</div>
-            </td>
-            <td>
-                <!---->
-            </td>
-            <td>
-                <!---->
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <div class="ms-3">Trans Fat</div>
-            </td>
-            <td>
-                <!---->
-            </td>
-            <td>
-                <!---->
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <strong>Cholesterol</strong>
-            </td>
-            <td>
-                <!---->
-            </td>
-            <td>
-                <!---->
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <strong>Sodium</strong>
-            </td>
-            <td>
-                <!---->
-            </td>
-            <td>
-                <!---->
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <strong>Total Carbohydrate</strong>
-            </td>
-            <td>
-                <!---->
-            </td>
-            <td>
-                <!---->
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <div class="ms-3">Dietary Fiber</div>
-            </td>
-            <td>
-                <!---->
-            </td>
-            <td>
-                <!---->
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <div class="ms-3">Total Sugars</div>
-            </td>
-            <td>
-                <!---->
-            </td>
-            <td>
-                <!---->
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <strong>Protein</strong>
-            </td>
-            <td>
-                <!---->
-            </td>
-            <td>
-                <!---->
-            </td>
-        </tr>
-    </tbody>
-    <tbody class="border-5 border-secondary border-start-0 border-end-0">
-        <tr>
-            <td>
-                <strong class="h3">Vitamins</strong>
-            </td>
-            <td>
-                <!---->
-            </td>
-            <td>
-                <!---->
-            </td>
-        </tr>
-        {% for food in foods %}
-        
-        {% endfor %}
-    </tbody>
-    <tbody class="border-5 border-secondary border-start-0 border-end-0">
-        <tr>
-            <td>
-                <strong class="h3">Minerals</strong>
-            </td>
-            <td>
-                <!---->
-            </td>
-            <td>
-                <!---->
-            </td>
-        </tr>
-        {% for food in foods %}
-        
-        {% endfor %}
-    </tbody>
-    <tbody class="border-5 border-secondary border-start-0 border-end-0">
-        <tr>
-            <td>
-                <strong class="h3">Fatty Acids</strong>
-            </td>
-            <td>
-                <!---->
-            </td>
-            <td>
-                <!---->
+                {{ proximates_map.1051.score }}
             </td>
         </tr>
-        {% for food in foods %}
-        
-        {% endfor %}
-    </tbody>
-    <tbody class="border-5 border-secondary border-start-0 border-end-0">
-        <tr>
+        <tr class="border-bottom border-muted">
             <td>
-                <strong class="h3">Sugars</strong>
+                <strong>Ash</strong>
             </td>
             <td>
-                <!---->
+                {{ proximates_map.1007.amount }} {{ proximates_map.1007.nutrient.unit }}
             </td>
             <td>
-                <!---->
+                {{ proximates_map.1007.score }}
             </td>
-        </tr>
-        {% for food in foods %}
-        
-        {% endfor %}
-    </tbody>
-    <tbody class="border-5 border-secondary border-start-0 border-end-0">
-        <tr>
-            <td>
-                <strong class="h3">Amino Acids</strong>
-            </td>
-            <td>
-                <!---->
-            </td>
-            <td>
-                <!---->
-            </td>
-        </tr>
-        {% for food in foods %}
-        
-        {% endfor %}
-    </tbody>
-</table>
-{% else %}
-    <p>No data found for this food.</p>
-{% endif %}
+            </tr>
+        </tbody>
+        {% if vitamins_map %}
+            <tbody class="border-5 border-secondary border-start-0 border-end-0">
+                <tr>
+                    <td>
+                        <strong class="h3">Vitamins</strong>
+                    </td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                {% for spec in vitamins_map.values %}
+                    <tr class="border-bottom border-muted">
+                        <td>
+                            {{ spec.nutrient.description }}
+                        </td>
+                        <td>
+                            {{ spec.amount }} {{ spec.nutrient.unit }}
+                        </td>
+                        <td>
+                            {{ spec.score }}
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        {% endif %}
+        {% if minerals_map %}
+            <tbody class="border-5 border-secondary border-start-0 border-end-0">
+                <tr>
+                    <td>
+                        <strong class="h3">Minerals</strong>
+                    </td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                {% for spec in minerals_map.values %}
+                    <tr class="border-bottom border-muted">
+                        <td>
+                            {{ spec.nutrient.description }}
+                        </td>
+                        <td>
+                            {{ spec.amount }} {{ spec.nutrient.unit }}
+                        </td>
+                        <td>
+                            {{ spec.score }}
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        {% endif %}
+        {% if fattyacids_map %}
+            <tbody class="border-5 border-secondary border-start-0 border-end-0">
+                <tr>
+                    <td>
+                        <strong class="h3">Fatty Acids</strong>
+                    </td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                {% for spec in fattyacids_map.values %}
+                    <tr class="border-bottom border-muted">
+                        <td>
+                            {{ spec.nutrient.description }}
+                        </td>
+                        <td>
+                            {{ spec.amount }} {{ spec.nutrient.unit }}
+                        </td>
+                        <td>
+                            {{ spec.score }}
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        {% endif %}
+        {% if sugars_map %}
+            <tbody class="border-5 border-secondary border-start-0 border-end-0">
+                <tr>
+                    <td>
+                        <strong class="h3">Sugars</strong>
+                    </td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                {% for spec in sugars_map.values %}
+                    <tr class="border-bottom border-muted">
+                        <td>
+                            {{ spec.nutrient.description }}
+                        </td>
+                        <td>
+                            {{ spec.amount }} {{ spec.nutrient.unit }}
+                        </td>
+                        <td>
+                            {{ spec.score }}
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        {% endif %}
+        {% if aminos_map %}
+            <tbody class="border-5 border-secondary border-start-0 border-end-0">
+                <tr>
+                    <td>
+                        <strong class="h3">Amino Acids</strong>
+                    </td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                {% for spec in aminos_map.values %}
+                    <tr class="border-bottom border-muted">
+                        <td>
+                            {{ spec.nutrient.description }}
+                        </td>
+                        <td>
+                            {{ spec.amount }} {{ spec.nutrient.unit }}
+                        </td>
+                        <td>
+                            {{ spec.score }}
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        {% endif %}
+        {% if others_map %}
+            <tbody class="border-5 border-secondary border-start-0 border-end-0">
+                <tr>
+                    <td>
+                        <strong class="h3">Others</strong>
+                    </td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                {% for spec in others_map.values %}
+                    <tr class="border-bottom border-muted">
+                        <td>
+                            {{ spec.nutrient.description }}
+                        </td>
+                        <td>
+                            {{ spec.amount }} {{ spec.nutrient.unit }}
+                        </td>
+                        <td>
+                            {{ spec.score }}
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        {% endif %}
+    </table>
+    <p class="small py-3 text-secondary">* <strong>RNCS</strong> = <strong>R</strong>elative <strong>N</strong>utrient <strong>C</strong>oncentration <strong>S</strong>core 
+        describes the amount of a nutrient relative to every food in the database. 100 is the highest occurence of a nutrient and 0 the lowest.</p>
+</div>
