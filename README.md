@@ -138,7 +138,3 @@ This App was implemented to:
 - Custom diet profiles (vegan, keto, etc.)
 - Meal planning suggestions
 - Mobile app development
-
-
-
-AI Tools were only used for research and learning purposes. Every line of code for this project is written by myself.
