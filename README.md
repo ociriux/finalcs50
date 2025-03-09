@@ -7,10 +7,9 @@ Ambrosia is a dynamic web application that helps users optimize their nutrition 
 
 ## Key Features
 - **Smart Nutrient Matching**: Input any combination of nutrients, and Ambrosia finds the top 20 foods that best    satisfy those requirements
-- **Interactive Nutrient Labels**: Click any food to view its comprehensive nutritional profile
-- **Fast And Dynamic Dashboard**: Use the nutrition matcher and quickly look through food-nutrient data without reloading the page
+- **Interactive And Dynamic Dashboard**: Use the nutrition matcher or click on any food to quickly look through food-nutrient data without reloading the page
 - **Semi-Automatic Database Updates**: Synchronization System, that runs on server start when provided a new URL
-- **Scoring System**: Foods are ranked based on their relative nutrient concentrations between other foods. When using the nutrition matcher, foods get picked based on average score between selected nutrients in a food
+- **Scoring System**: Foods are ranked based on their relative nutrient concentrations compared to other foods. When using the nutrition matcher, foods get picked based on the average score for the selected nutrients in a food
 - **Food Browser**: Browse and search through the complete food and nutrient database
 
 ## Technical Architecture
