@@ -5,3 +5,6 @@ __pycache__/
 # Ignore virtual environment
 .venv/
 venv/
+
+# Ignore sensitive data
+.env
